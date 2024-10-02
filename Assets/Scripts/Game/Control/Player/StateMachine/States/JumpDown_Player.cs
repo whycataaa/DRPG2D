@@ -36,13 +36,7 @@ public class JumpDown_Player : IState
         {
             fsm.ChangeState(StateType.Idle);
         }
-        if(board.PC.IsLadder)
-        {
-            if(board.PC.MoveInputY!=0)
-            {
-                fsm.ChangeState(StateType.Ladder);
-            }
-        }
+
     }
     public void OnFixedUpdate()
     {
