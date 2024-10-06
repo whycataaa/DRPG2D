@@ -19,12 +19,11 @@ public class Data_Player : ScriptableObject
     public float JumpToMinTime;
     //向前速度
     public float JumpMoveSpeed;
-    //向后速度
-    public float JumpMoveSpeedBack;
+    //下落最大速度
+    public float JumpDownMaxSpeed;
     public int JumpTimes;
     [Header("Ladder")]
     public float LadderMoveSpeedX;
     public float LadderMoveSpeedY;
-    [Header("Battle")]
-    public float BattleMoveSpeed;
+
 }

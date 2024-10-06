@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MY_FSM;
+using MY_FrameWork;
 public class Idle_Player : IState
 {
     private FSM fsm;
@@ -20,7 +20,7 @@ public class Idle_Player : IState
 
     public void OnEnter()
     {
-        Debug.Log("Idle_Player OnEnter");
+
         vStart=board.PC.Rb.velocity;
         elapsedTime=0;
         stopTime=board.PC.Data_Player.StopTime;

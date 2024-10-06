@@ -13,7 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     
 
     #region 战斗
-    public Vector2 HandMove{get;private set;}=Vector2.zero;
+    public Vector2 MouseMove{get;private set;}=Vector2.zero;
     #endregion
     void Awake()
     {
@@ -76,17 +76,16 @@ public class PlayerInputHandler : MonoBehaviour
     #region Battle
     private void OnHandMoveStarted(InputAction.CallbackContext context)
     {
-        HandMove=context.ReadValue<Vector2>();
+        MouseMove=context.ReadValue<Vector2>();
     }
     private void OnHandMovePerformed(InputAction.CallbackContext context)
     {
-        HandMove=context.ReadValue<Vector2>();
+        MouseMove=context.ReadValue<Vector2>();
     }
     private void OnHandMoveCanceled(InputAction.CallbackContext context)
     {
-        HandMove=context.ReadValue<Vector2>();
+        MouseMove=context.ReadValue<Vector2>();
     }
-
 
     #endregion
 

@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using MY_FSM;
+using MY_FrameWork;
 using UnityEngine;
 
 public class JumpDown_Player : IState
@@ -41,10 +41,18 @@ public class JumpDown_Player : IState
     public void OnFixedUpdate()
     {
          elapsedTime += Time.fixedDeltaTime;
-
+        
+        
          float targetSpeed=board.PC.MoveInputX*board.PC.Data_Player.JumpMoveSpeed;
          board.PC.Move(currentVelocity.x,targetSpeed,board.PC.Data_Player.ToTargetTime,ref elapsedTime);
 
+
+        // if(board.PC.Rb.velocity.y<=board.PC.Data_Player.JumpDownMaxSpeed)
+        // {
+        //     board.PC.Rb.velocity=new Vector2(board.PC.Rb.velocity.x,-board.PC.Data_Player.JumpDownMaxSpeed);
+        // }
+
+        
         // if(elapsedTime <= board.PC.Data_Player.JumpDownToMaxTime)
         // {
         //      board.PC.Rb.velocity=new Vector2(board.PC.Rb.velocity.x,

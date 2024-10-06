@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MY_FSM
+namespace MY_FrameWork
 {
     public enum StateType
     {

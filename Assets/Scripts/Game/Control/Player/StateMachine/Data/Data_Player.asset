@@ -18,8 +18,7 @@ MonoBehaviour:
   JumpUpMaxSpeed: 10
   JumpToMinTime: 0.2
   JumpMoveSpeed: 3.5
-  JumpMoveSpeedBack: 0
+  JumpDownMaxSpeed: 5
   JumpTimes: 1
   LadderMoveSpeedX: 5
   LadderMoveSpeedY: 5
-  BattleMoveSpeed: 0

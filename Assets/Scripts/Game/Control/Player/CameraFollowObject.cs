@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,10 +6,10 @@ public class CameraFollowObject : MonoBehaviour
 {
 
     [SerializeField]
-    float OFFSET;
+    Vector2 OFFSET;
 
     [DisplayOnly][SerializeField]
-    private float offset;
+    private Vector2 offset;
     //过渡时间
     [SerializeField]
     private float transTime;
@@ -24,7 +25,7 @@ public class CameraFollowObject : MonoBehaviour
     {
         offset = OFFSET;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        transform.position=new Vector2(transform.position.x+offset,transform.position.y);
+        transform.position=new Vector2(transform.position.x+offset.x,transform.position.y+offset.y);
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ public class CameraFollowObject : MonoBehaviour
     /// </summary>
     void Update()
     {
-        transform.position=playerController.transform.position+new Vector3(offset,0);
+        transform.position=playerController.transform.position+new Vector3(offset.x,offset.y);
     }
 
     public void Turn()
@@ -47,16 +48,18 @@ public class CameraFollowObject : MonoBehaviour
     private IEnumerator Flip()
     {
         IsTurning=true;
-        float startX=offset;
+        float startX=offset.x;
+        float startY=offset.y;
         float endX=GetEndX();
+        float endY=OFFSET.y;
         float elapsedTime = 0f;
 
         while (elapsedTime < transTime)
         {
             elapsedTime += Time.deltaTime;
 
-            offset=Mathf.Lerp(startX,endX,elapsedTime/transTime);
-
+            offset.x=Mathf.Lerp(startX,endX,elapsedTime/transTime);
+            offset.y=Mathf.Lerp(startY,endY,elapsedTime/transTime);
             yield return null;
 
             if(elapsedTime>=transTime)
@@ -67,15 +70,17 @@ public class CameraFollowObject : MonoBehaviour
 
     }
 
+
+
     private float GetEndX()
     {
         if(playerController.IsFacingRight)
         {
-            return OFFSET;
+            return OFFSET.x;
         }
         else
         {
-            return -OFFSET;
+            return -OFFSET.x;
         }
     }
 }

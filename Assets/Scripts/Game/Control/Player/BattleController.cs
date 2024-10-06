@@ -18,16 +18,16 @@ public class BattleController : MonoBehaviour
         inputHandler = GetComponent<PlayerInputHandler>();
         data=GetComponent<PlayerController>().Data_Player;
 
-        
+
     }
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        if(inputHandler.HandMove!=Vector2.zero)
+        if(inputHandler.MouseMove!=Vector2.zero)
         {
-            Debug.Log(inputHandler.HandMove);
+//            Debug.Log(inputHandler.MouseMove);
         }
     }
 }

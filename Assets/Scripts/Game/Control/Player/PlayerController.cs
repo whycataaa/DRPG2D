@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using MY_FSM;
+using MY_FrameWork;
 
 [RequireComponent(typeof(PlayerInputHandler))]
 public class PlayerController : MonoBehaviour
@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     GroundDetect groundDetect;
     LadderDetect ladderDetect;
     GameObject playerGO;
-    Animator playerAnimator;
+    public Animator BodyAnimator;
 
     #region Movement
     [DisplayOnly][SerializeField]
@@ -51,18 +51,26 @@ public class PlayerController : MonoBehaviour
     private FSM fsm;
     public BlackBoard_Player blackBoard;
     #endregion
+
+    Vector2 baseScale;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
     /// </summary>
     void Start()
     {
+        baseScale=transform.localScale;
         JumpTimes=Data_Player.JumpTimes;
-        playerGO = GameObject.Find("Player/PlayerGO");
+        playerGO = GameObject.Find("Player");
         inputHandler = GetComponent<PlayerInputHandler>();
         cameraFollowObject=GameObject.Find("CameraFollowPoint").GetComponent<CameraFollowObject>();
         Rb = GetComponent<Rigidbody2D>();
 
+        BodyAnimator = transform.GetChild(0).GetComponent<Animator>();
+        if(BodyAnimator==null)
+        {
+            Debug.LogError("Animator Not Found:Body");
+        }
         groundDetect=GetComponentInChildren<GroundDetect>();
         ladderDetect=GetComponentInChildren<LadderDetect>();
         blackBoard.Init(this);
@@ -112,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     void SetFaceDir(float _Dir)
     {
-        playerGO.transform.localScale = new Vector2(Mathf.Sign(_Dir), 1);
+        playerGO.transform.localScale = new Vector2(Mathf.Sign(_Dir)*baseScale.x, 1*baseScale.y);
         if(_Dir<0&&IsFacingRight)
         {
             IsFacingRight=false;
